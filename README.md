@@ -24,7 +24,7 @@ Para usar o plugin é necessário importá-lo de forma que a pagina desejada ten
 
 
 ## Uso
-Para iniciar o plugin é preciso apenas inciar o código em um bloco de script
+Para iniciar o plugin é preciso apenas iniciar o código em um bloco de script
 
 ```js
 let csv = new importCsv({

@@ -5,7 +5,7 @@ A teoria que o envolve é simples.
 
 - Insira o acesso a lib em sua view.
 - O plugin criará no body um botão ao lado direto que poderá ser configurado através de _options_ para ganhar uma nova posição vertical.
-- Ao clicar neste botão o evento inseri na pagina uma modal de bootstrap com um form para importação do CSV.
+- Ao clicar neste botão o evento insere na pagina uma modal de bootstrap com um form para importação do CSV.
 - CNeste momento é possível escolher o arquivo CSV assim como definir o separador definido em sua exportação.
 - Ao clicar no submit o arquivo é lido pelo JS e mostra sua primeira linha para que então seja possível relacionar as tabelas(denfinidas em _options_).
 - Após a relação das tabelas, ao clicar no botão de envio o request envia ao backend (denfinido em _options_) os parametros a serem tratados e posteriormente inseridos no BD.

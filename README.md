@@ -67,7 +67,7 @@ ON MODEL
 
 ```php
  function importCsv($dados){
-        
+
         $tabelas=$dados['tabelas'];
         $data=$dados['data'];
         $query="INSERT IGNORE INTO usuarios (";
@@ -87,20 +87,20 @@ ON MODEL
                 }else{
                     count($trs) > $countTrBody ?  $query.="'".str_replace("'", " '", $tr)."'"."," :  $query.="'".str_replace("'", " '", $tr)."'".");";
                 }
-                   
-                
+
+
                 $countTrBody++;
             }
             $countData++;
         }
-       return $query;
+       //return $query;
         try{
             $r = $this->selectDB($query);
             return $r ;
         }catch (Exception $e) {
             return false;
        }
-         
+
         return $r;
      }
 

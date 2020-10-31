@@ -35,6 +35,7 @@ let csv = new importCsv({
   modalTitle: "Importar Whitelist",
   buttonTitle: "Importar",
   topExcelPosition: "200",
+  serial:0,
   routeBackEnd: "/processlogin",
   tabelas: ["nome", "email", "diretoria", "unidade", "empresa"],
   params: { q: "importarCsv" },

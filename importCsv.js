@@ -10,18 +10,23 @@ function importCsv(options) {
   options.hasOwnProperty("tabelas")
     ? (importCsv.prototype.tabelas = options.tabelas)
     : alert("Você precisa definir as tabelas que deseja importar");
-  options.hasOwnProperty("params")
-    ? (importCsv.prototype.params = options.params)
-    : (importCsv.prototype.params = {});
   options.hasOwnProperty("topExcelPosition")
     ? (importCsv.prototype.topExcelPosition = options.topExcelPosition)
     : (importCsv.prototype.topExcelPosition = "200");
+  options.hasOwnProperty("serial")//seria = 0 paralelo 1
+    ? (importCsv.prototype.serial = options.serial)
+    : (importCsv.prototype.serial = 0);
+  options.hasOwnProperty("params")
+    ? (importCsv.prototype.params = options.params)
+    : (importCsv.prototype.params = {});
+  importCsv.prototype.params['serial'] = options.serial;
 
+  console.log(importCsv.prototype.params);
   options.hasOwnProperty("routeBackEnd")
     ? (importCsv.prototype.routeBackEnd = options.routeBackEnd)
     : alert(
-        "Você continuar, você precisa definir a variável routeBackEnd em options. Nela, ficará definida a rota de backend para onde será enviado o objeto de importação"
-      );
+      "Você continuar, você precisa definir a variável routeBackEnd em options. Nela, ficará definida a rota de backend para onde será enviado o objeto de importação"
+    );
   this.initTemplate();
 
   this.importTemplate();
@@ -210,8 +215,9 @@ importCsv.prototype.orderData = function () {
 };
 
 importCsv.prototype.send = function (getOrderData) {
-  let _params = Object.assign(getOrderData, importCsv.prototype.params);
+  let _params = Object.assign(importCsv.prototype.params, getOrderData);
   $.post(importCsv.prototype.routeBackEnd, _params).done(function (data) {
+    console.log(data);
     $("#goImportCsv").html(importCsv.prototype.buttonTitle);
     $("#goImportCsv").prop("disabled", false);
   });

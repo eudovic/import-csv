@@ -64,8 +64,6 @@ if($q == "importarCsv"){
   }
 ```
 
-ON MODEL
-
 ```php
  function importCsv($dados){
 

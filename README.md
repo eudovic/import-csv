@@ -129,10 +129,10 @@ if ($q == "importarCsv") {
             return $retorno;
         }
         
-        try{
+        try {
             $r = $this->selectDB($query);
             return $r ;
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             return false;
        }
 

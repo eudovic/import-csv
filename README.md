@@ -57,36 +57,36 @@ let csv = new importCsv({
 ON CONTROLLER
 
 ```php
-if($q == "importarCsv"){
+if ($q == "importarCsv") {
        $Loader->Class('usuario');
        $c = new Usuario;
-       $res=$c->importCsv($_REQUEST);
+       $res = $c->importCsv($_REQUEST);
       $Loader->JSON($res);
   }
 ```
 
 ```php
- function importCsv($dados){
+ function importCsv($dados) {
 
-        $tabelas=$dados['tabelas'];
-        $data=$dados['data'];
-        if($dados['serial']==0){
+        $tabelas = $dados['tabelas'];
+        $data = $dados['data'];
+        if ($dados['serial']==0) {
             $query="INSERT IGNORE INTO usuarios (";
             $countTrHead=1;
             foreach($tabelas as $tabela){
                 count($tabelas) > $countTrHead ?  $query.=$tabela."," :  $query.=$tabela.")";
                 $countTrHead++;
             }
-            $query.="VALUES";
-            $countData=1;
-            foreach ($data as $trs){
-                $countTrBody=1;
-                $query.="(";
-                foreach($trs as $tr){
-                    if(count($data) > $countData){
-                        count($trs) > $countTrBody ?  $query.="'".$newPhrase = str_replace("'", " ", $tr)."'"."," :  $query.="'".str_replace("'", " '", $tr)."'"."),";
-                    }else{
-                        count($trs) > $countTrBody ?  $query.="'".str_replace("'", " '", $tr)."'"."," :  $query.="'".str_replace("'", " '", $tr)."'".");";
+            $query .= "VALUES";
+            $countData = 1;
+            foreach ($data as $trs) {
+                $countTrBody = 1;
+                $query .= "(";
+                foreach($trs as $tr) {
+                    if(count($data) > $countData) {
+                        count($trs) > $countTrBody ?  $query .= "'" . $newPhrase = str_replace("'", " ", $tr) . "'" . "," :  $query .= "'" . str_replace("'", " '", $tr)."'"."),";
+                    } else {
+                        count($trs) > $countTrBody ?  $query .= "'" . str_replace("'", " '", $tr) . "'" . "," :  $query .= "'" . str_replace("'", " '", $tr)."'".");";
                     }
                     
                     
@@ -94,24 +94,24 @@ if($q == "importarCsv"){
                 }
                 $countData++;
             }
-        }else{
-            foreach ($data as $trs){
+        } else {
+            foreach ($data as $trs) {
                
-                $query="INSERT IGNORE INTO usuarios (";
+                $query = "INSERT IGNORE INTO usuarios (";
                 $countTrHead=1;
                 foreach($tabelas as $tabela){
                     count($tabelas) > $countTrHead ?  $query.=$tabela."," :  $query.=$tabela.")";
                     $countTrHead++;
                 }
-                $query.="VALUES";
-                $countData=1;
-                $countTrBody=1;
-                $query.="(";
-                foreach($trs as $tr){
-                    if(count($data) > $countData){
-                        count($trs) > $countTrBody ?  $query.="'".$newPhrase = str_replace("'", " ", $tr)."'"."," :  $query.="'".str_replace("'", " '", $tr)."'".");";
-                    }else{
-                        count($trs) > $countTrBody ?  $query.="'".str_replace("'", " '", $tr)."'"."," :  $query.="'".str_replace("'", " '", $tr)."'".");";
+                $query .= "VALUES";
+                $countData = 1;
+                $countTrBody = 1;
+                $query .= "(";
+                foreach ($trs as $tr) {
+                    if (count($data) > $countData) {
+                        count($trs) > $countTrBody ?  $query .= "'" . $newPhrase = str_replace("'", " ", $tr) . "'"."," :  $query .= "'" . str_replace("'", " '", $tr)."'".");";
+                    } else {
+                        count($trs) > $countTrBody ?  $query .= "'" . str_replace("'", " '", $tr) . "'"."," :  $query .= "'" . str_replace("'", " '", $tr) . "'".");";
                     }
                     
                     
@@ -119,15 +119,17 @@ if($q == "importarCsv"){
                 }
                 $countData++;
                  $r = $this->selectDB($query);
-                $retorno[]=['query'=>$query,'retorno'=>$r];
+                $retorno[] = [
+                  'query' => $query,
+                  'retorno' => $r
+                ];
                 sleep(1);
             } 
 
             return $retorno;
         }
-       //return $query;
+        
         try{
-
             $r = $this->selectDB($query);
             return $r ;
         }catch (Exception $e) {
